@@ -1,0 +1,60 @@
+.container
+  %h2 
+    =@post.heading
+    - if session[:user] and @post.is_owned_by(session[:user])
+      %span
+        %small
+          %form#delete{method: 'post', action: '/post'}
+            %input{type: 'hidden', name: 'id', value: @post.id}
+            %input{type: 'hidden', name: '_method', value: 'delete'}
+            %a{href:"/post/edit/#{@post.id}"}
+              %i.glyphicon.glyphicon-edit
+              edit
+            &middot;
+            %a{href:"#", onclick: "$('#delete').submit();"}
+              %i.glyphicon.glyphicon-remove
+              delete post
+   
+  .row
+    .col-md-12
+      .post-content
+        %br
+        =markdown @post.content
+        %br
+  .row
+    .col-md-12
+      %h4
+        %span.glyphicon.glyphicon-comment
+        Comments
+        (#{@post.comments.size})
+      - @post.comments.each do |comment|
+        - if session[:user] and comment.is_owned_by(session[:user])
+          %form{method: 'post', action: '/comment', id: "delete_comment_#{comment.id}"}
+            %input{type: 'hidden', name: 'id', value: comment.id}
+            %input{type: 'hidden', name: '_method', value: 'delete'}      
+          
+        .comment{id: "comment_#{comment.id}"}
+        
+          =markdown comment.content
+          %small
+            by #{comment.user.name}
+            on
+            =comment.created_at.strftime "%e %b %Y, %l:%M %P"            
+
+            %a.comment-delete{href:"#", onclick: "$('#delete_comment_#{comment.id}').submit();"}
+              %i.glyphicon.glyphicon-remove
+              delete          
+          %hr
+    
+  - if session[:user]      
+    .row      
+      .col-md-12
+        %h4 Add new comment
+
+        %form{method: 'post', action: '/comment', role: :form}
+          %input{type: 'hidden', name: 'post_id', value: @post.id}
+          %textarea.form-control{name: 'content', placeholder: 'Type your comment here', rows: 5}
+          %br
+          %input.btn.btn-primary{type: 'submit', value: 'Add comment'}
+  - else
+    Please sign in to comment.

@@ -1,0 +1,77 @@
+.navbar.navbar-default.navbar-fixed-top{role: "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{type: "button", "data-toggle" => "collapse", "data-target" => ".navbar-collapse"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{href:"/"}
+        %span.glyphicon.glyphicon-book
+        BLOG
+
+    .navbar-collapse.collapse        
+      %ul.nav.navbar-nav
+        - if session[:user]
+          %li
+            %a{href: '/post/new'} 
+              %i.glyphicon.glyphicon-plus
+              New Post            
+
+      %ul.nav.navbar-nav.navbar-right
+        - if session[:user]
+          %li.dropdown
+            %a.dropdown-toggle{:href => "#", 'data-toggle' => 'dropdown' }
+              %i.glyphicon.glyphicon-user
+              =@user.name
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => '/logout'} 
+                  %span.glyphicon.glyphicon-log-out 
+                  Sign out
+        - else
+          %li
+            %a{href: "#", "data-target" => '#signin', 'data-toggle' => 'modal'} 
+              %span.glyphicon.glyphicon-off
+              Sign in
+          %li
+            %a{href: '#register', 'data-toggle' => 'modal'} 
+              Register
+            
+                
+#signin.modal.fade{tabindex: "-1", role: "dialog", "aria-hidden" => "true"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: :button, 'data-dismiss' => 'modal', "aria-hidden" => "true"} &times;
+        #signin-label.modal-title
+          %h3 Sign in to post or comment
+      .modal-body
+        %form.form-signin{action: "/signin", method: :post, role: :form}
+          .form-group
+            %label{for: "id"} Email
+            %input.form-control#id{type: :text, placeholder: 'email', name: 'email', required: true, autofocus: true}
+          .form-group
+            %label{for: "password"} Password
+            %input.form-control#password{type: :password, placeholder: 'password', name: 'password', required: true}
+          %input.btn.btn-lg.btn-default.btn-primary{type: :submit, value: 'Sign In'}
+
+#register.modal.fade{tabindex: "-1", role: "dialog", "aria-hidden" => "true"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: :button, 'data-dismiss' => 'modal'} &times;
+        #register-label.modal-title
+          %h3 Register an account
+    
+      .modal-body
+        %p Enter your name and an email address to register an account
+        %form{action: "/register", method: :post, role: :form}
+          .form-group
+            %input.form-control#name{type: :text, placeholder: 'enter your name', name: 'name'}
+          .form-group
+            %input.form-control#email{type: :text, placeholder: 'enter your email', name: 'email'}
+          %input.btn.btn-lg.btn-default.btn-primary{type: :submit, value: 'register'}
+  
+  

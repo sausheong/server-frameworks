@@ -1,0 +1,84 @@
+{{# post }}
+<div class="container">
+  <h2>
+    {{ heading }}    
+    {{# logged_in }}
+    <span>
+      <small>
+        <form action="/post" id="delete" method="post">
+          <input name="id" type="hidden" value="{{ id }}">
+          <input name="_method" type="hidden" value="delete">
+          <a href="/post/edit/{{ id }}">
+            <i class="glyphicon glyphicon-edit"></i>
+            edit
+          </a>
+          ·
+          <a href="#" onclick="$('#delete').submit();">
+            <i class="glyphicon glyphicon-remove"></i>
+            delete post
+          </a>
+        </form>
+      </small>
+    </span>    
+    {{/ logged_in }}
+  </h2>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="post-content">
+        <br>
+        {{ content }}
+        <br>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>
+        <span class="glyphicon glyphicon-comment"></span>
+        Comments
+        ({{ comments.size }})
+      </h4>
+      {{# comments_in_reverse }}
+      <form action='/comment' id='delete_comment_{{ id }}' method='post'>
+        <input name='post_id' type='hidden' value='{{ post.id }}'>
+        <input name='id' type='hidden' value='{{ id }}'>
+        <input name='_method' type='hidden' value='delete'>
+      </form>
+      <div class='comment' id='comment_2'>
+        <p>{{ content }}</p>
+        <small>
+          by {{ user.name }}
+          on
+          {{ created_at }}
+          {{# logged_in }}
+          <a class='comment-delete' href='#' onclick="$('#delete_comment_{{ id }}').submit();">
+            <i class='glyphicon glyphicon-remove'></i>
+            delete
+          </a>
+          {{/ logged_in }}
+        </small>
+        <hr>
+      </div>
+      {{/ comments_in_reverse }}
+    </div>
+  </div>
+
+  {{^ logged_in }}
+  Please sign in to comment.
+  {{/ logged_in }}
+
+  {{# logged_in }}
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Add new comment</h4>
+      <form action="/comment" method="post" role="form">
+        <input name="post_id" type="hidden" value="{{ id }}">
+        <textarea class="form-control" name="content" placeholder="Type your comment here" rows="5"></textarea>
+        <br>
+        <input class="btn btn-primary" type="submit" value="Add comment">
+      </form>
+    </div>
+  </div>
+  {{/ logged_in }}
+</div>
+{{/ post }}

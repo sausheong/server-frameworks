@@ -1,0 +1,8 @@
+.form-group
+  %label{for: "heading"} Heading
+  %input.form-control#heading{type: 'text', name: 'heading', placeholder: 'Type your post heading here', value: @post.heading}
+
+.form-group
+  %label{for: "content"} Content
+  %textarea.form-control#content{name: 'content', placeholder: 'Type your post here', rows: 10}
+    =@post.content

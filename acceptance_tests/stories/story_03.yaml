@@ -1,0 +1,5 @@
+story: As an owner or writer I want to be able to delete my own posts
+acceptance-criteria:
+   - I need to log in to delete my post
+   - Posts cannot be deleted without logging in
+   - Only owner of the post can delete his own post

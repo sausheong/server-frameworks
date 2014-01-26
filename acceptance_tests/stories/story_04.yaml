@@ -1,0 +1,5 @@
+story: As an owner or writer I want to be able to modify my own posts
+acceptance-criteria:
+   - I need to log in to modify my post
+   - Posts cannot be modified without logging in
+   - Only owner of the post can modify his own post

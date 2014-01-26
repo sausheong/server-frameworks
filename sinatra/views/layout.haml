@@ -1,0 +1,23 @@
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title Blog
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0'}
+    %link{rel: 'stylesheet', href: '/css/bootstrap.min.css', type: 'text/css'}
+    %link{rel: 'stylesheet', href: '/css/bootstrap-theme.min.css', type: 'text/css'}    
+
+  %body 
+    =toolbar
+    =yield
+    
+    %br
+    %footer
+      %p.mute.footer.text-center  
+        &copy; 
+        %a{href:'http://about.me/sausheong'} Chang Sau Sheong 
+        2014
+    %script{type: 'text/javascript', src: "/js/jquery-1.10.2.min.js"}
+    %script{type: 'text/javascript', src: "/js/bootstrap.min.js"}
+        
+:css
+  body { min-height: 2000px; padding-top: 60px;}

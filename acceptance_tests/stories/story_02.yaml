@@ -1,0 +1,5 @@
+story: As a reader, I want to read blog posts
+acceptance-criteria:
+   - I can read without logging in
+   - Posts have headings and content 
+   - I can view a post

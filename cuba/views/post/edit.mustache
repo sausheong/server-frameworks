@@ -1,0 +1,22 @@
+{{# post }}
+<div class="container">
+  <h2>
+    <i class="glyphicon glyphicon-edit"></i>
+    Edit Post
+  </h2>
+  <h4>Modify your post below</h4>
+  <form action="/post" method="post" role="form">
+    <div class="form-group">
+      <label for="heading">Heading</label>
+      <input class="form-control" id="heading" name="heading" placeholder="Type your post heading here" type="text" value="{{ heading }}">
+    </div>
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea class="form-control" id="content" name="content" placeholder="Type your post here" rows="10">{{ content }}</textarea>
+    </div>
+    <input name="id" type="hidden" value="{{ id }}">
+    <input class="btn btn-lg btn-primary" type="submit" value="Modify">
+    <a class="btn btn-lg btn-default" href="/">Cancel</a>
+  </form>
+</div>
+{{/ post }}

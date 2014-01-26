@@ -1,0 +1,12 @@
+.container
+  %h2 
+    %i.glyphicon.glyphicon-plus
+    Add New Post
+  %h4 Type a new post into the fields and click on add to create it.
+  
+  %form{method: :post, action: '/post', role: :form}
+
+    =snippet :'post/_fields'
+
+    %input.btn.btn-lg.btn-primary{type: 'submit', value: 'Add'}
+    %a.btn.btn-lg.btn-default{href:'/'} Cancel

@@ -1,0 +1,64 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      
+      {{# posts }}
+      <h2 class='text-info'>
+        <a class='post-heading' href='/post/view/{{ id }}'>
+          {{ heading }}
+        </a>
+        {{# logged_in }}
+        <small>
+          <a href="/post/edit/{{ id }}">
+            <i class="glyphicon glyphicon-edit"></i>
+            edit
+          </a>
+        </small>
+        {{/ logged_in }}
+      </h2>
+      <small class='muted'>
+        by {{ user.name }} on {{ created_at }}
+        &nbsp; &middot; &nbsp;
+        {{ comments.size }} comments
+      </small>
+      <p class='post-content'>
+        <p>{{ content }}</p>
+      </p>
+      <hr>
+      {{/ posts }}
+      {{# show_pagination? }}
+      <ul class='pagination'>
+        {{^ first_page? }}
+        <li>
+          <a href='/'>
+            &laquo;
+          </a>
+        </li>
+        {{/ first_page? }}
+        {{# pages }}
+        <li>
+          <a href='/?page={{ page }}'>
+            {{ page }}
+          </a>
+        </li>
+        {{/ pages }}
+        {{^ last_page? }}
+        <li>
+          <a href='/?page={{ page_count }}'>
+            &raquo;
+          </a>
+        </li>
+        {{/ last_page? }}
+      </ul>
+      {{/ show_pagination? }}
+    </div>
+  </div>
+</div>
+<br>
+<footer>
+  <p class='mute footer text-center'>
+    &copy;
+    <a href='http://about.me/sausheong'>Chang Sau Sheong</a>
+    2014
+  </p>
+</footer>

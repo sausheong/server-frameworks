@@ -1,0 +1,19 @@
+<div class='container'>
+  <h2>
+    <i class='glyphicon glyphicon-plus'></i>
+    Add New Post
+  </h2>
+  <h4>Type a new post into the fields and click on add to create it.</h4>
+  <form action='/post' method='post' role='form'>
+    <div class='form-group'>
+      <label for='heading'>Heading</label>
+      <input class='form-control' id='heading' name='heading' placeholder='Type your post heading here' type='text'>
+    </div>
+    <div class='form-group'>
+      <label for='content'>Content</label>
+      <textarea class='form-control' id='content' name='content' placeholder='Type your post here' rows='10'></textarea>
+    </div>
+    <input class='btn btn-lg btn-primary' type='submit' value='Add'>
+    <a class='btn btn-lg btn-default' href='/'>Cancel</a>
+  </form>
+</div>

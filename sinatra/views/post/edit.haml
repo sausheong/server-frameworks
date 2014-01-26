@@ -1,0 +1,13 @@
+.container
+  %h2 
+    %i.glyphicon.glyphicon-edit
+    Edit Post
+  %h4 Modify your post below
+
+  %form{method: 'post', action: '/post', role: :form}
+
+    =snippet :'post/_fields'
+    %input{type: 'hidden', name: 'id', value: @post.id}
+
+    %input.btn.btn-lg.btn-primary{type: 'submit', value: 'Modify'}
+    %a.btn.btn-lg.btn-default{href:'/'} Cancel

@@ -1,0 +1,43 @@
+.container
+  - if @posts.empty?
+    %h2 There are no posts yet.
+  - else
+    .row
+      .col-md-12
+        - @posts.each do |post|
+          %h2.text-info
+            %a.post-heading{href: "/post/view/#{post.id}"}
+              =post.heading
+            &nbsp;
+            - if session[:user] and post.is_owned_by(session[:user])
+              %small
+                %a{href:"/post/edit/#{post.id}"}
+                  %i.glyphicon.glyphicon-edit
+                  edit
+
+          %small.muted
+            by #{post.user.name}
+            on
+            =post.created_at.strftime "%e %b %Y, %l:%M %P"
+            &nbsp; &middot; &nbsp;
+            #{post.comments.size} comments
+    
+          %p.post-content
+            =markdown post.content            
+        
+          - unless post.id == @posts.last.id
+            %hr
+        
+        %ul.pagination
+          - unless @posts.first_page?
+            %li
+              %a{href: "/"} &laquo;         
+          - @posts.page_count.times do |page_no|
+            %li
+              %a{href: "?page=#{page_no+1}"}
+                =page_no+1
+          - unless @posts.last_page?
+            %li
+              %a{href: "?page=#{@posts.page_count}"} &raquo;           
+
+        

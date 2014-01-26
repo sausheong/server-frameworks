@@ -1,0 +1,114 @@
+<div class='navbar navbar-default navbar-fixed-top' role='navigation'>
+  <div class='container'>
+    <div class='navbar-header'>
+      <button class='navbar-toggle' data-target='.navbar-collapse' data-toggle='collapse' type='button'>
+        <span class='sr-only'>Toggle navigation</span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+      </button>
+      <a class='navbar-brand' href='/'>
+        <span class='glyphicon glyphicon-book'></span>
+        BLOG
+      </a>
+    </div>
+    <div class='navbar-collapse collapse'>
+      {{# logged_in }}
+      <ul class='nav navbar-nav'>
+        <li>
+          <a href='/post/new'>
+            <i class='glyphicon glyphicon-plus'></i>
+            New Post
+          </a>
+        </li>
+      </ul>
+      {{/ logged_in }}
+      <ul class='nav navbar-nav navbar-right'>
+        {{^ logged_in }}
+        <li>
+          <a data-target='#signin' data-toggle='modal' href='#'>
+            <span class='glyphicon glyphicon-off'></span>
+            Sign in
+          </a>
+        </li>        
+        <li>
+          <a data-toggle='modal' href='#register'>
+            Register
+          </a>
+        </li>
+        {{/ logged_in }}
+        {{# logged_in }}
+        <li class='dropdown'>
+          <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+            <i class='glyphicon glyphicon-user'></i>
+            Sau Sheong
+            <span class='caret'></span>
+          </a>
+          <ul class='dropdown-menu'>
+            <li>
+              <a href='/logout'>
+                <span class='glyphicon glyphicon-log-out'></span>
+                Sign out
+              </a>
+            </li>
+          </ul>
+        </li>
+        {{/ logged_in }}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{{^ logged_in }}
+
+<div aria-hidden='true' class='modal fade' id='signin' role='dialog' tabindex='-1'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button aria-hidden='true' class='close' data-dismiss='modal' type='button'>&times;</button>
+        <div class='modal-title' id='signin-label'>
+          <h3>Sign in to post or comment</h3>
+        </div>
+      </div>
+      <div class='modal-body'>
+        <form action='/signin' class='form-signin' method='post' role='form'>
+          <div class='form-group'>
+            <label for='id'>Email</label>
+            <input autofocus class='form-control' id='id' name='email' placeholder='email' required type='text'>
+          </div>
+          <div class='form-group'>
+            <label for='password'>Password</label>
+            <input class='form-control' id='password' name='password' placeholder='password' required type='password'>
+          </div>
+          <input class='btn btn-lg btn-default btn-primary' type='submit' value='Sign In'>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div aria-hidden='true' class='modal fade' id='register' role='dialog' tabindex='-1'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button class='close' data-dismiss='modal' type='button'>&times;</button>
+        <div class='modal-title' id='register-label'>
+          <h3>Register an account</h3>
+        </div>
+      </div>
+      <div class='modal-body'>
+        <p>Enter your name and an email address to register an account</p>
+        <form action='/register' method='post' role='form'>
+          <div class='form-group'>
+            <input class='form-control' id='name' name='name' placeholder='enter your name' type='text'>
+          </div>
+          <div class='form-group'>
+            <input class='form-control' id='email' name='email' placeholder='enter your email' type='text'>
+          </div>
+          <input class='btn btn-lg btn-default btn-primary' type='submit' value='register'>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{/ logged_in }}
