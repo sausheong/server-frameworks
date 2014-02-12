@@ -1,2 +1,0 @@
-rspec acceptance/story_*.rb --format html --out results.html
-psql -h localhost -d blog_sinatra -c "delete from posts;delete from comments;"

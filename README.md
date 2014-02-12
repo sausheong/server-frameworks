@@ -3,7 +3,7 @@
 Implementing the same blog web application with 2 differently styled server-side frameworks.
 
 * Framework 1 - Minimalist (Haml + Sinatra + Sequel + Postgres)
-* Framework 2 - MVC (Mustache + Cuba + Mongoid + MongoDB)
+* Framework 2 - Alternative (Mustache + Cuba + Mongoid + MongoDB)
 
 ## Blog web application user stories
 

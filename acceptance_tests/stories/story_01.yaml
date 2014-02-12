@@ -1,5 +1,0 @@
-story: As an owner or a writer, I want to write blog posts
-acceptance-criteria:
-  - I need to log in before writing posts
-  - I need valid access to write posts
-  - I can use Markdown to write posts

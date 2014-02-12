@@ -1,5 +1,0 @@
-story: As a reader I want to be able to delete my own comments
-acceptance-criteria:
-   - I need to log in to modify my post
-   - I need to be the commentor to delete my own comments
-   - No one else can delete my comments
